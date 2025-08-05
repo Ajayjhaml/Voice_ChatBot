@@ -1,0 +1,11 @@
+streamlit
+requests
+gTTS
+speechrecognition
+pydub
+torch
+transformers
+peft
+fastapi
+uvicorn
+pydantic
