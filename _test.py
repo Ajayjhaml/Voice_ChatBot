@@ -7,6 +7,6 @@ def test_fastapi_response():
     assert response.status_code == 200
     assert "output" in response.json()
     print("✅ FastAPI responded with:", response.json()["output"])
-
+#add always
 if __name__ == "__main__":
     test_fastapi_response()
