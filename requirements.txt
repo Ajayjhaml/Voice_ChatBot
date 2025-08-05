@@ -9,3 +9,6 @@ peft
 fastapi
 uvicorn
 pydantic
+vosk
+numpy
+sounddevice 
