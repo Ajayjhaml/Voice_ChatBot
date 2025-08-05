@@ -1,23 +1,19 @@
-name: 🤖 Chatbot CI Test
+name: 🔁 CI Test - Customer Chatbot
 
 on:
   push:
     paths:
-      - "app.py"
-      - "_test.py"
-      - ".github/workflows/ci.yaml"
+      - "**.py"
   pull_request:
     paths:
-      - "app.py"
-      - "_test.py"
-      - ".github/workflows/ci.yaml"
+      - "**.py"
 
 jobs:
-  test-chatbot-api:
+  test-fastapi:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout repo
         uses: actions/checkout@v3
 
       - name: 🐍 Set up Python
@@ -25,14 +21,15 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: 🔧 Install dependencies
+      - name: 📦 Install dependencies
         run: |
-          pip install requests
+          pip install -r requirements.txt
+          pip install requests fastapi uvicorn
 
-      - name: 🚀 Start FastAPI (background)
+      - name: 🚀 Start FastAPI server
         run: |
-          nohup uvicorn backend:app --host 0.0.0.0 --port 8000 &
-          sleep 5
+          nohup uvicorn main:app --host 127.0.0.1 --port 8000 &
+          sleep 10  # wait for server to boot
 
       - name: ✅ Run tests
         run: python _test.py
